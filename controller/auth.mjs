@@ -28,23 +28,25 @@ export async function signup(req, res) {
 export async function login(req, res) {
     const { userid, password } = req.body
     const user = await authRepository.findByUserid(userid)
-    if(user) {
-        const isValidPassword = await bcrypt.compare(password, user.password)
-        if(!isValidPassword){
-            return res.status(401).json({ message: "아이디 또는 비밀번호 확인"})
-        }
-        const token = await createJwtToken(user.id)
-        res.status(200).json({ token, user })
-    } else {
-        if(!isValidPassword){
-            return res.status(401).json({ message: "아이디 또는 비밀번호 확인"})
-        }
+    if(!user) {
+        return res.status(401).json({ message: "아이디 또는 비밀번호 확인"})
     }
+    const isValidPassword = await bcrypt.compare(password, user.password)
+    if(!isValidPassword){
+        return res.status(401).json({ message: "아이디 또는 비밀번호 확인"})
+    }
+    const token = await createJwtToken(user.id)
+    res.status(200).json({ token, user })
+   
 }
 
 // 로그인 유지
 export async function me(req, res) {
-
+    const user = await authRepository.findById(req.id)
+    if(!user){
+        return res.status(404).json({ message: "일치하는 사용자가 없음"})
+    }
+    res.status(200).json({ token: req.token, userid: user.userid})
 }
 
 async function createJwtToken(id) {
