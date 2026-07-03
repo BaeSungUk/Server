@@ -32,16 +32,9 @@ export async function getById(id) {
 export async function update(text, id) {
     return getPosts().findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { 
-            $set: {
-                text: text.trim()    
-            }
-        },
-        {
-            // 변경되고나서 이전값, 변경된값을 보여주는 코드
-            returnDocument: "after" // 변경된 값을 보여준다
-        }
-    )}
+        { $set: { text } },
+        { returnDocument: "after" }
+    ).then((result) => result)}
 
 // 포스트 삭제
 export async function remove(id) {
