@@ -243,8 +243,6 @@ async function deletePost(id) {
       },
     })
 
-    const data = await response.json()
-
     if (!response.ok) {
       message.textContent = data.message || "게시글 삭제 실패"
       return
