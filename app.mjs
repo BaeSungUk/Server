@@ -8,6 +8,7 @@ import postsRouter from "./router/posts.mjs"
 const app = express()
 
 app.use(express.json())
+app.use(express.static("public"))
 // 회원 페이지 
 app.use("/auth", authRouter)
 // 포스트 페이지

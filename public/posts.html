@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>게시글</title>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="posts-container">
+    <header class="posts-header">
+      <div>
+        <h1>게시글</h1>
+      </div>
+
+      <button id="logout-btn" class="logout-btn">로그아웃</button>
+    </header>
+
+    <section class="search-box">
+      <input
+        id="search-id"
+        type="text"
+        placeholder="사용자 아이디 입력"
+      />
+      <button id="search-btn">검색</button>
+      <button id="reset-btn">전체조회</button>
+    </section>
+
+    <p id="message" class="message"></p>
+
+    <section class="post-write-box">
+      <h2>게시글 작성</h2>
+
+      <div class="input-group">
+        <label for="text">내용</label>
+        <textarea
+          id="text"
+          placeholder="게시글 내용을 입력하세요"
+        ></textarea>
+      </div>
+
+      <button id="create-btn" class="login-btn">작성하기</button>
+    </section>
+
+    <section class="post-list-section">
+      <h2>게시글 목록</h2>
+
+      <div id="post-list" class="post-list">
+        <!-- JS에서 게시글 목록 출력 -->
+      </div>
+    </section>
+  </div>
+
+  <script src="./posts.js"></script>
+</body>
+</html>

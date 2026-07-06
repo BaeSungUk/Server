@@ -32,7 +32,7 @@ export async function getById(id) {
 export async function update(text, id) {
     return getPosts().findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { text } },
+        { $set: { text , updatedAt: new Date()} },
         { returnDocument: "after" }
     ).then((result) => result)}
 
